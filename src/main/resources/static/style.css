@@ -1,0 +1,24 @@
+#name-form{
+    height: 100vh;
+}
+i {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-style: normal;
+    text-transform: uppercase;
+    margin-right: 20px  ;
+}
+.chat-message {
+    padding-left: 68px;
+    position: relative;
+}
