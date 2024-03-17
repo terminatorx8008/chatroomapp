@@ -32,7 +32,7 @@ function onConnected() {
     stompClint.send("/app/message", {}, JSON.stringify(joinMessage));
 }
 
-    function sendMessage(){
+function sendMessage(){
     let jsonOb = {
         name:localStorage.getItem("name"),
         content:$("#message-value").val(),
@@ -41,6 +41,14 @@ function onConnected() {
     stompClint.send("/app/message",{},JSON.stringify(jsonOb));
     var message=document.querySelector("#message-value");
     message.value='';
+}
+function logOutMessage(){
+    var jsonOb = {
+        name:localStorage.getItem("name"),
+        content:(localStorage.getItem("name") + ' left the chat!'),
+        type:'LEAVE'
+    }
+    stompClint.send("/app/message",{},JSON.stringify(jsonOb));
 }
 function onMessageRecived(payload) {
     var message = JSON.parse(payload.body);
@@ -76,7 +84,7 @@ function onMessageRecived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-    function getAvatarColor(messageSender) {
+function getAvatarColor(messageSender) {
         var hash = 0;
         for (var i = 0; i < messageSender.length; i++) {
             hash = 31 * hash + messageSender.charCodeAt(i);
@@ -94,4 +102,11 @@ $(document).ready(e=>{
     $("#send-btn").click(()=>{
         sendMessage();
     })
+    $("#logout-btn").click(()=>{
+        logOutMessage();
+        stompClint.disconnect();
+        $("#name-form").removeClass('d-none');
+        $("#chat-room").addClass('d-none');
+    })
+
 })
