@@ -38,7 +38,7 @@ public class Config implements WebSocketMessageBrokerConfigurer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("*"); // You can restrict this to specific origins
+        config.addAllowedOriginPattern("*"); // Use allowedOriginPatterns instead of allowedOrigins
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
